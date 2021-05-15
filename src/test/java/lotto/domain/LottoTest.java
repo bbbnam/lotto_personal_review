@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoTest {
 
     @Test
-    @DisplayName("로또 생성시 로또 번호 선택되는지 테스트 - 자동 생성")
+    @DisplayName("로또 생성 테스트 - 자동 생성")
     void selectLottoNumbers_auto() {
         NumberSelector numberSelector = new Auto();
 
@@ -20,7 +20,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("로또 생성시 로또 번호 선택되는지 테스트 - 수동 생성")
+    @DisplayName("로또 생성 테스트 - 수동 생성")
     void selectLottoNumbers_manual() {
         NumberSelector numberSelector = new Manual("1,2,3,4,5,6");
 
