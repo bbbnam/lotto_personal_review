@@ -44,4 +44,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자값은 6개의 중복되지 않은 값만 선택 가능합니다.");
     }
+
+    @Test
+    @DisplayName("당첨번호를 입력받아 구매한 로또의 번호와 비교하여 당첨여부 테스트")
+    void matchLotto() {
+        Manual manual = new Manual("1,2,3,4,5,6");
+        Lotto lotto = new Lotto(manual);
+
+        List<LottoNumber> winningNumbers = new Manual("1,2,3,4,5,7").selectNumbers();
+
+        assertThat(lotto.match(new Lotto(winningNumbers), new LottoNumber(3))).isEqualTo(WinningType.SECOND);
+    }
 }
