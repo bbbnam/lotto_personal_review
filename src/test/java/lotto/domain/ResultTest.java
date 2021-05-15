@@ -14,11 +14,11 @@ class ResultTest {
     void matchWinningType() {
         Lotto lotto1 = new Lotto(new Manual("1,2,3,4,5,6"));
         Lotto lotto2 = new Lotto(new Manual("1,2,3,4,5,8"));
+        List<Lotto> myLottos = Arrays.asList(lotto1, lotto2);
+        Result result = new Result(myLottos);
+
         Lotto winningLotto = new Lotto(new Manual("1,2,3,4,5,9"));
         LottoNumber bonus = new LottoNumber(6);
-        List<Lotto> myLottos = Arrays.asList(lotto1, lotto2);
-
-        Result result = new Result(myLottos);
 
         WinningResults winningResults = result.matchWinningType(winningLotto, bonus);
 

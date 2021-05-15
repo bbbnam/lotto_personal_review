@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class WinningResultsTest {
 
@@ -15,7 +15,7 @@ class WinningResultsTest {
     void calculateProfitRate() {
         long inputPrice = 14000L;
         Map<WinningType, Integer> winnings = new HashMap<>();
-        winnings.put(WinningType.FOURTH, 1);
+        winnings.put(WinningType.FIFTH, 1);
 
         WinningResults winningResults = new WinningResults(winnings);
 
