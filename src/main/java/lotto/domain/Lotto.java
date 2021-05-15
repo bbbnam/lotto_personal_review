@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,8 +19,8 @@ public class Lotto {
 
     private void validateNumbersSize(List<LottoNumber> lottoNumbers) {
         Set<LottoNumber> set = new HashSet<>(lottoNumbers);
-        if (set.size() != lottoNumbers.size()) {
-            throw new IllegalArgumentException("숫자값은 중복 선택이 불가합니다.");
+        if (set.size() < 6) {
+            throw new IllegalArgumentException("숫자값은 6개의 중복되지 않은 값만 선택 가능합니다.");
         }
     }
 
