@@ -13,13 +13,14 @@ class ResultTest {
     @DisplayName("등수 결정된 결과값 정상적으로 리턴하는지 테스트")
     void matchWinningType() {
         Lotto lotto1 = new Lotto(new Manual("1,2,3,4,5,6"));
-        Lotto lotto2 = new Lotto(new Manual("1,2,3,4,7,8"));
+        Lotto lotto2 = new Lotto(new Manual("1,2,3,4,5,8"));
         Lotto winningLotto = new Lotto(new Manual("1,2,3,4,5,9"));
+        LottoNumber bonus = new LottoNumber(6);
         List<Lotto> myLottos = Arrays.asList(lotto1, lotto2);
 
         Result result = new Result(myLottos);
 
-        WinningResults winningResults = result.matchWinningType(winningLotto);
+        WinningResults winningResults = result.matchWinningType(winningLotto, bonus);
 
         Assertions.assertThat(winningResults.getResults()).contains(WinningType.SECOND, WinningType.THIRD);
     }
