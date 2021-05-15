@@ -7,10 +7,10 @@ import java.util.stream.Stream;
 
 public enum WinningType {
     FIRST(2_000_000_000, 6),
-    //SECOND(30_000_000, 5),
-    SECOND(1_500_000, 5),
-    THIRD(50_000, 4),
-    FOURTH(5_000, 3),
+    SECOND(30_000_000, 5),
+    THIRD(1_500_000, 5),
+    FOURTH(50_000, 4),
+    FIFTH(5_000, 3),
     NOTHING(0, 0);
 
     private final long prize;
@@ -21,11 +21,22 @@ public enum WinningType {
         this.matchCount = matchCount;
     }
 
-    public static WinningType findType(int matchCount) {
+    public static WinningType findType(int matchCount, boolean matchBonus) {
+        if (matchCount == 5 && !matchBonus) {
+            return WinningType.THIRD;
+        }
+
         return Stream.of(values())
                 .filter(it -> it.matchCount == matchCount)
                 .findFirst()
                 .orElse(NOTHING);
+    }
+
+    public static List<WinningType> getReverseValues() {
+        return Stream.of(values())
+                .sorted(Collections.reverseOrder())
+                .filter(type -> type != WinningType.NOTHING)
+                .collect(Collectors.toList());
     }
 
     public long getPrize() {

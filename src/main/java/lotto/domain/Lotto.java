@@ -21,17 +21,27 @@ public class Lotto {
     private void validateNumbersSize(List<LottoNumber> lottoNumbers) {
         Set<LottoNumber> set = new HashSet<>(lottoNumbers);
         if (set.size() < 6) {
-            throw new IllegalArgumentException("숫자값은 6개의 중복되지 않은 값만 선택 가능합니다.");
+            throw new IllegalArgumentException("숫자값은 중복 선택이 불가합니다.");
         }
-    }
-
-    public WinningType match(Lotto winningLotto) {
-        List<LottoNumber> winningNumbers = new ArrayList<>(winningLotto.lottoNumbers);
-        winningNumbers.retainAll(this.lottoNumbers);
-        return WinningType.findType(winningNumbers.size());
     }
 
     public List<LottoNumber> getNumbers() {
         return lottoNumbers;
+    }
+
+    public WinningType match(Lotto winningLotto, LottoNumber bonus) {
+        List<LottoNumber> winningNumbers = new ArrayList<>(winningLotto.lottoNumbers);
+        winningNumbers.retainAll(this.lottoNumbers);
+        boolean matchBonus = isMatcheBonus(bonus);
+        return WinningType.findType(winningNumbers.size(), matchBonus);
+    }
+
+    private boolean isMatcheBonus(LottoNumber bonusNumber) {
+        return this.lottoNumbers.contains(bonusNumber);
+    }
+
+    @Override
+    public String toString() {
+        return lottoNumbers.toString();
     }
 }
